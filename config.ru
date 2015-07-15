@@ -4,7 +4,9 @@
 #code for runnign app with rackup
 
 require "./config/environment"
+
 run ApplicationController
+
 
 #code for runnning stand alon app
 # require "./app"

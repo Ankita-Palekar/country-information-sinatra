@@ -1,5 +1,4 @@
 class ApplicationController < Sinatra::Base
-
 	set	:views, Proc.new	{File.join(root, "../views/")}
 	set :public_folder , Proc.new {File.join(root,"../public")}
 	enable :static
@@ -7,7 +6,11 @@ class ApplicationController < Sinatra::Base
 	not_found{redirect "/404"}
 	
 	get '/' do
-		'India is my country I love my country and I am proud of it'
+		country = Country.new
+		country.get_all_countries
+		erb :index
 	end
+
+
 
 end

@@ -8,5 +8,7 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sinatra/base'
 require 'sinatra/twitter-bootstrap'
+require 'json'
 require './controllers/application_controller.rb'
- 
+require 'open-uri'
+require './models/country.rb'
