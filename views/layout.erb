@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+  <%= bootstrap_assets %>
+   
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+  <header>
+   <div class="navbar">
+     <div class="navbar-inner">
+       <a class="brand" href="/">Country Information</a>
+       <ul  class="nav pull-right">
+        <li> <a href="/logout">logout</a></li>
+       </ul>
+     </div>
+   </div>
+  </header>
+    <div class="container">
+      <div class="row-fluid">
+       <section>
+        <div class="row">
+          <div class="span12">
+            <div class="span3">
+             <div class="sidebar" data-spy="affix-top" data-offset-top="200">
+              <ul class="nav nav-list">
+                <li>All Countries</li>
+                <li>sort by</li>
+                <li>language</li>
+                <li>region</li>
+                <li></li>
+              </ul>
+             </div>
+            </div>
+            <div class="span9">
+              <%= yield %>
+            </div>  
+          </div>
+        </div>
+       </section>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+ .form-center{
+	margin: 0 auto;
+	display: block;
+}
+
+.sidebar li{
+	/*text-align: center;*/
+}
+
+.recipe-highlight h6{ 
+	display:  inline-block;
+}
+.recipe-highlight li i{
+	/*float: left;*/
+}
+
+
+img{
+	margin: 0 auto;
+	display: block;
+}
+
+.recipe-highlight h5{
+	color: #000;
+}
+
+a :hover{
+	text-decoration: none;
+}
+
+
+
+.create-category{
+	margin: 0 auto;
+	display: block;
+}
