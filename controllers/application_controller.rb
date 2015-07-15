@@ -23,7 +23,15 @@ class ApplicationController < Sinatra::Base
 	get '/country/:country_code' do 
 		country = Country.new
 		@country_information = country.get_country_information(params["country_code"])
-		
+
+		@calling_code = country.calling_code
+		@currency = country.currency
+		@region = country.region
+		@sub_region = country.sub_region
+		@country_name = country.country_name
+		@country_code = country.country_code	
+		@lang = country.lang
+
 		erb :country
 	end
 

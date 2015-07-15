@@ -1,25 +1,49 @@
 <div class="row">
 	<div class="span12">
 		 <div class="hero-unit">
-		   <h1><%= @country_information["name"]%> </h1>
+		   <h1><%= @country_information["name"]%></h1>
 		    <p>capital :<%= @country_information["capital"] %> </p>	
-		  	<a href="">
-		  		<p>region :<%= @country_information["region"] %></p>
-		  	</a> 
-		  	<p>subregion: <%= @country_information["subregion"] %></p> 
-		  	<p>population: <%= @country_information["population"] %></p> 
-		  	<p>subregion: <%= @country_information["name"] %> </p> 
-		  	<p>calling_code: <%= @country_information["callingCodes"] %></p>
-		  	<p>currencies: <%= @country_information["currencies"] %> </p>
-		  	<p>languages: <%= @country_information["languages"] %></p>
-		  	<p>countrycode: <%= @country_information["alpha2Code"] %></p>
 		  	<p>
-		  		latlong: 	<%= @country_information["latlng"][0] %>
-		  	 						<%=	@country_information["latlng"][1] %> 
+		  		region :
+		  		<a href=<%= @region + @country_information["region"] %>>
+		  			<%= @country_information["region"] %>
+		  		</a> 
+		  	</p>
+		  	<p>
+		  		subregion: 
+			  	<a href=<%= @sub_region + @country_information["subregion"] %> >
+			  		<%= @country_information["subregion"] %>
+			  	</a> 
+		  	</p>
+		  	<p>population: <%= @country_information["population"] %></p> 
+		  	<p>
+		  		calling_code :
+		  		<% @country_information["callingCodes"].each do |code| %>
+						<a href=<%= @calling_code + code.to_s %>> <%= code %> </a>
+		  		<% end %>
+		  	</p>
+				<p>
+					Currencies :
+					<% @country_information["currencies"].each do |currency| %>
+				  	<a href=<%= @currency + currency.to_s %>>
+				  		 <%= currency %>
+				  	</a>
+					<% end %>
+				</p>
+				<p>
+					languages :
+					<% @country_information["languages"].each do |language| %>
+				  	<a href=<%= @lang + language.to_s %>>
+				  	  <%= language %>
+				  	</a>
+					<% end %>
+				</p>
+
+		  	<p>countrycode: <%= @country_information["alpha2Code"] %></p>
+		  	<p>latlong: 	<%= @country_information["latlng"][0] %><%=	@country_information["latlng"][1]%> 
 		  	</p>
 		   </p>
 		 </div>
-
 		 <div id="map_canvas" width="100">	
 		 </div>
 
