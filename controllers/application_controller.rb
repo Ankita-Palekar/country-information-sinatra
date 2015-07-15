@@ -5,10 +5,23 @@ class ApplicationController < Sinatra::Base
 	register Sinatra::Twitter::Bootstrap::Assets
 	not_found{redirect "/404"}
 	
-	get '/' do
-		country = Country.new
-		country.get_all_countries
+	get '/' do 
+		countries = Country.new
+		@all_countries = countries.get_all_countries
+		@alpha = countries.alpha
 		erb :index
+	end
+
+	get '/all' do 
+		countries = Country.new
+		@all_countries = countries.get_all_countries
+		@alpha = countries.alpha
+		erb :country_list
+	end
+
+	get '/country/:country_code' do 
+		countries = Country.new
+		erb :country
 	end
 
 

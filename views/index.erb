@@ -2,6 +2,16 @@
 	<h3>
  		Welcome
 	</h3>
+		<% @all_countries.each do |country|  %>
+			<%= "#{country['name']}" %>
+			<%= "#{country['capital']}" %>
+			<%= "#{country['region']}" %>
+			<%= "#{country['subregion']}" %>
+			<%= "#{country['currencies'][0]}" %>
+			<%= "#{country['language']}" %>
+		<% end %>
+	<p>
+	</p>
 </div>
  
 	  
