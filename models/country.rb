@@ -15,7 +15,7 @@ class Country
 		@country_name = "/name/"
 		@country_code = "/alpha/"
 		@lang = "/lang/"
-	end
+ 	end
 
 	def get_country_images(country_name)
 		request_uri = @base_uri_images + @end_point + country_name
@@ -44,7 +44,8 @@ class Country
 
 
 	def get_search_result(query)
-		request_uri = (@base_uri + @substring + query).strip
+		request_uri = (@base_uri + @country_name + query).strip
+		puts request_uri 
 		search_list = JSON.parse(open(request_uri).read)
 		search_list
 	end

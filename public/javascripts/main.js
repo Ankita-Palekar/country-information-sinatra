@@ -1,8 +1,8 @@
 $(document).ready(function(){
 	$('#search-countries').bind('form_submit_on_enter',function() {
-			console.log($(this).val)
+			$('.spinner').show()
+			$('#search-result').hide()
 			query_string = $(this).val()
-
 			$.ajax({
 					url : "/search",
 					method : "POST",
@@ -12,7 +12,9 @@ $(document).ready(function(){
 			 .done(function(data, textstatus, jqXHR) {
 					console.log(data)
 					if (jqXHR.status == 200) {
-						$(".search-result-container").html(data)
+						$('.spinner').hide()
+						$("#search-result").html(data)
+						$("#search-result").show()
 					};
 			  })
 			 .fail(function(data, textstatus, jqXHR) {

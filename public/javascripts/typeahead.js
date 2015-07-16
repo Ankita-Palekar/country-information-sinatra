@@ -10,7 +10,6 @@
   methods = {
     initialize: function(datasetDefs) {
       var datasets;
-
       datasetDefs = utils.isArray(datasetDefs) ? datasetDefs : [datasetDefs];
 
       if (datasetDefs.length === 0) {
