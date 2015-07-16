@@ -4,6 +4,9 @@ class Country
 	
 	def initialize
 		@base_uri = "https://restcountries.eu/rest/v1"
+		@base_uri_images = "https://api.gettyimages.com:443/v3/search/images?"
+		@end_point = "artists="
+		@api_key = "nwkxwgjamhuacvrb5e6hx7ej"
 		@all_countries = "/all"
 		@calling_code = "/callingcode/"
 		@currency = "/currency/"
@@ -12,7 +15,13 @@ class Country
 		@country_name = "/name/"
 		@country_code = "/alpha/"
 		@lang = "/lang/"
-		@substring = "/name/"
+	end
+
+	def get_country_images(country_name)
+		request_uri = @base_uri_images + @end_point + country_name
+		request_uri = URI.encode(request_uri)
+		result = JSON.parse(open(request_uri, "api-key" => @api_key).read)
+		result
 	end
 
 	def json_parse(request_uri)
@@ -29,6 +38,9 @@ class Country
 		return_uri
 	end
 
+	# def get_all_countries(query)
+
+	# end
 
 
 	def get_search_result(query)
@@ -42,6 +54,8 @@ class Country
 		country_list = JSON.parse(open(request_uri).read)
 		country_list
 	end
+	
+	
 
 	def get_region_countries(region)
 		request_uri = (@base_uri + @region + region).strip

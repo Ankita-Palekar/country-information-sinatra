@@ -1,54 +1,83 @@
 <div class="row">
 	<div class="span12">
 		 <div class="hero-unit">
-		   <h1><%= @country_information["name"]%></h1>
-		    <p>capital :<%= @country_information["capital"] %> </p>	
-		  	<p>
-		  		region :
-		  		<a href=<%= @region + @country_information["region"] %>>
-		  			<%= @country_information["region"] %>
-		  		</a> 
-		  	</p>
-		  	<p>
-		  		subregion: 
-			  	<a href=<%= @sub_region + @country_information["subregion"] %> >
-			  		<%= @country_information["subregion"] %>
-			  	</a> 
-		  	</p>
-		  	<p>population: <%= @country_information["population"] %></p> 
-		  	<p>
-		  		calling_code :
-		  		<% @country_information["callingCodes"].each do |code| %>
-						<a href=<%= @calling_code + code.to_s %>> <%= code %> </a>
-		  		<% end %>
-		  	</p>
-				<p>
-					Currencies :
-					<% @country_information["currencies"].each do |currency| %>
-				  	<a href=<%= @currency + currency.to_s %>>
-				  		 <%= currency %>
-				  	</a>
-					<% end %>
-				</p>
-				<p>
-					languages :
-					<% @country_information["languages"].each do |language| %>
-				  	<a href=<%= @lang + language.to_s %>>
-				  	  <%= language %>
-				  	</a>
-					<% end %>
-				</p>
+		   	<h1 claas="country-name"><%= @country_information["name"]%></h1>
+				<div class="row">
+					<div class="span12">
+						<div class="span7">
+							<div id="map_canvas" width="100">	
+							</div>
+						</div>
+						<div class="span5">		
+					    <p>capital :<%= @country_information["capital"] %> </p>	
+					  	<p>
+					  		region :
+					  		<a href=<%= @region + @country_information["region"] %>>
+					  			<%= @country_information["region"] %>
+					  		</a> 
+					  	</p>
+					  	<p>
+					  		subregion: 
+						  	<a href=<%= @sub_region + @country_information["subregion"] %> >
+						  		<%= @country_information["subregion"] %>
+						  	</a> 
+					  	</p>
+					  	<p>population: <%= @country_information["population"] %></p> 
+					  	<p>
+					  		calling_code :
+					  		<% @country_information["callingCodes"].each do |code| %>
+									<a href=<%= @calling_code + code.to_s %>> <%= code %> </a>
+					  		<% end %>
+					  	</p>
+							<p>
+								Currencies :
+								<% @country_information["currencies"].each do |currency| %>
+							  	<a href=<%= @currency + currency.to_s %>>
+							  		 <%= currency %>
+							  	</a>
+								<% end %>
+							</p>
+							<p>
+								languages :
+								<% @country_information["languages"].each do |language| %>
+							  	<a href=<%= @lang + language.to_s %>>
+							  	  <%= language %>
+							  	</a>
+								<% end %>
+							</p>
 
-		  	<p>countrycode: <%= @country_information["alpha2Code"] %></p>
-		  	<p>latlong: 	<%= @country_information["latlng"][0] %><%=	@country_information["latlng"][1]%> 
-		  	</p>
-		   </p>
+					  	<p>countrycode: <%= @country_information["alpha2Code"] %></p>
+					  	<p>latlong: 	<%= @country_information["latlng"][0] %><%=	@country_information["latlng"][1]%> 
+					  	</p>
+					   </p>
+						</div>
+					</div>
+				</div>
 		 </div>
-		 <div id="map_canvas" width="100">	
-		 </div>
-
 	</div>
 </div>
+
+<!-- <div class="row">
+	<div class="span12">
+		<div id="map-canvas"></div>
+	</div>
+</div> -->
+  
+<% @image_list["images"].each_slice(3)  do |image_batch|%>
+	<div class="row">
+		<div class="span12">
+			<% image_batch.each do |image| %>
+				<div class="span4">
+					<img src=<%= image["display_sizes"][0]["uri"] %> alt=<%= image["caption"] %>>
+				</div>
+			<% end %>
+		</div>
+	</div>
+<% end %>
+
+
+ 
+ 
 
 <script>
     // function initialize() {

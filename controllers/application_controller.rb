@@ -3,6 +3,7 @@ class ApplicationController < Sinatra::Base
 	set	:views, Proc.new	{File.join(root, "../views/")}
 	set :public_folder , Proc.new {File.join(root,"../public")}
 	enable :static
+	enable :sessions, :method_override
 	register Sinatra::Twitter::Bootstrap::Assets
 	register Mustache::Sinatra
 	
@@ -35,6 +36,10 @@ class ApplicationController < Sinatra::Base
 		@country_name = country.country_name
 		@country_code = country.country_code	
 		@lang = country.lang
+
+		@image_list = country.get_country_images(@country_information["name"])
+		# puts @get_images.inspect
+
 		erb :country
 	end
 
@@ -66,12 +71,9 @@ class ApplicationController < Sinatra::Base
 		erb :country_list
 	end
 
-	get '/language/:language_code' do
+	get '/lang/:language_code' do
 		country = Country.new
 		@country_list = country.get_same_language_countries(params["language_code"])
-
-
-
 		@alpha = country.country_code
 		erb :country_list
 	end
@@ -82,7 +84,6 @@ class ApplicationController < Sinatra::Base
 		@search_list
 		content_type 'text/html'
 		erb :search, :layout => false
-
 	end
 
 end
