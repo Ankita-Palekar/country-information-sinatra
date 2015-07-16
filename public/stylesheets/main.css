@@ -1,10 +1,26 @@
 .country-block{
 	width: 100%;
-	background-color: #EEE
+	background-color: #E4E4E4;
+	height: 120px;
+	border-radius: 29px;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.coutnry-list-title{
+	text-align: center;
+}
+
+.country{
+	margin: 0 auto;
+	display: block;
 }
 
 ul.country{
-	list-style: none
+	list-style: none;
+	text-align:center;
+	padding-top: 8%;
+  color: #22313F;
 }
 
 .search-country-header{
@@ -15,3 +31,17 @@ input.search-countries{
 	height: 50px	;
 }
 
+ 
+.country-grid > a:hover 
+{
+	text-decoration: none;
+}
+
+.single-country > .country-name{
+	text-align: center;
+}
+
+
+.country-people-img-div img{
+	width: 100%;
+}

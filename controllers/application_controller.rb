@@ -1,22 +1,26 @@
 class ApplicationController < Sinatra::Base
 	
-	set	:views, Proc.new	{File.join(root, "../views/")}
-	set :public_folder , Proc.new {File.join(root,"../public")}
 	enable :static
 	enable :sessions, :method_override
+	set	:views, Proc.new	{File.join(root, "../views/")}
+	set :public_folder , Proc.new {File.join(root,"../public")}
 	register Sinatra::Twitter::Bootstrap::Assets
-	register Mustache::Sinatra
+	# register Mustache::Sinatra
 	
-	set :mustache, {
-		:templates	=>	"../mustache-template",
-		:views	=>	"../mustache-view"
-	}
+	# set :mustache, {
+	# 	:templates	=>	"../mustache-template",
+	# 	:views	=>	"../mustache-view"
+	# }
 
-	not_found{redirect "/404"}
+	# not_found{redirect "/404"}
 	
 	get '/' do 
 		erb :index
 	end
+
+	# get '/404' do 
+	# 	erb :404
+	# end
 
 	get '/all' do 
 		countries = Country.new

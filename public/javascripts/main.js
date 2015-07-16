@@ -11,7 +11,7 @@ $(document).ready(function(){
 				})
 			 .done(function(data, textstatus, jqXHR) {
 					console.log(data)
-					if (jqXHR.status==200) {
+					if (jqXHR.status == 200) {
 						$(".search-result-container").html(data)
 					};
 			  })
