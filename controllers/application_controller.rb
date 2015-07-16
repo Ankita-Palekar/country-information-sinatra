@@ -57,8 +57,10 @@ class ApplicationController < Sinatra::Base
 
 	get '/subregion/:sub_region' do
 		country = Country.new
+		puts params["sub_region"]
 		sub_request_call = country.sub_region
 		@country_list = country.call_api(sub_request_call, params["sub_region"])
+		puts @country_list.inspect
 		@alpha = country.country_code
 		erb :country_list
 	end
@@ -74,7 +76,7 @@ class ApplicationController < Sinatra::Base
 	get '/currency/:currency' do
 		country = Country.new
 		sub_request_call = country.currency
-		@country_list= country.call_api(sub_request_call, params["currency"])
+		@country_list = country.call_api(sub_request_call, params["currency"])
 		@alpha = country.country_code
 		erb :country_list
 	end

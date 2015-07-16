@@ -20,12 +20,15 @@ class Country
 	def get_country_images(country_name)
 		request_uri = @base_uri_images + @end_point + country_name
 		request_uri = URI.encode(request_uri)
+		
 		result = JSON.parse(open(request_uri, "api-key" => @api_key).read)
 		result
 	end
 
 	def call_api(action, request_code = "")
 		request_uri = (@base_uri + action +  request_code).strip
+		puts "=========================="
+		puts request_uri.inspect
 		request_uri = URI.encode(request_uri)
 		result = JSON.parse(open(request_uri).read)
 		result

@@ -18,8 +18,8 @@
 					  	</p>
 					  	<p>
 					  		subregion: 
-						  	<a href=<%= @sub_region + @country_information["subregion"] %> >
-						  		<%= @country_information["subregion"] %>
+						  	<a href=<%= (@sub_region + @country_information["subregion"].gsub!(' ', '%20')).strip %> >
+						  		<%= @country_information["subregion"].gsub!('%20', ' ') %>
 						  	</a> 
 					  	</p>
 					  	<p>population: <%= @country_information["population"] %></p> 
@@ -67,7 +67,7 @@
 	<div class="row">
 		<div class="span12">
 			<% image_batch.each do |image| %>
-				<div class="span3 places-img-div">
+				<div class="span3 country-people-img-div">
 					<img class="img-polaroid" src=<%= image["display_sizes"][0]["uri"] %> alt=<%= image["caption"] %>>
 				</div>
 			<% end %>
