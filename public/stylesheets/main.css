@@ -115,3 +115,11 @@ input.search-countries{
 ul.country-list{
   text-align: center;
 }
+/*
+.panne-show{
+  display: none;
+}
+*/
+.region-name, .pannel-show{
+  cursor: pointer;
+}

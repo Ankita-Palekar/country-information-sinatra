@@ -5,41 +5,35 @@ class ApplicationController < Sinatra::Base
 	set	:views, Proc.new	{File.join(root, "../views/")}
 	set :public_folder , Proc.new {File.join(root,"../public")}
 	register Sinatra::Twitter::Bootstrap::Assets
-	# register Mustache::Sinatra
-	
-	# set :mustache, {
-	# 	:templates	=>	"../mustache-template",
-	# 	:views	=>	"../mustache-view"
-	# }
-
-	# not_found{redirect "/404"}
-	
-	# call_all = Proc.new do |sub_request_call, param| 
-	# 	@country_list = country.call_api(sub_request_call, params["calling_code"])
-	# 	@alpha = country.country_code
-	# 	erb :country_list
-	# end
 
 	get '/' do 
 		erb :index
 	end
 
+
 	# get '/404' do 
 	# 	erb :404
 	# end
-	get '/test' do
-		country = Country.new
-	  country.get_all_information
+
+	#to call regions accordian and all other information 
+
+	get '/regions' do
+		@country = Country.new
+		# @country.get_all_information if  !@country.data_initialisation
+		@regions = @country.region_names_set
+		puts @regions.inspect
+		erb :region
 	end
 
-	get '/all' do 
-		countries = Country.new
-		sub_request_call = countries.all_countries
-		@country_list = countries.call_api(sub_request_call)
-		@alpha = countries.country_code
-		erb :country_list
-	end
 
+	#to call onload page methods
+	# get '/region' do 
+	# 	countries = Country.new
+	# 	sub_request_call = countries.all_countries
+	# 	@country_list = countries.call_api(sub_request_call)
+	# 	@alpha = countries.country_code
+	# 	erb :country_list
+	# end
 
 	get '/country/:country_code' do 
 		country = Country.new
@@ -60,9 +54,10 @@ class ApplicationController < Sinatra::Base
 	get '/region/:region' do
 		country = Country.new
 		sub_request_call = country.region
-		@country_list = country.call_api(sub_request_call, params["region"])
+		@result_list = country.call_api(sub_request_call, params["region"])
 		@alpha = country.country_code
-		erb :country_list
+		content_type 'text/html'
+		erb :result, :layout => false
 	end
 
 	get '/subregion/:sub_region' do
@@ -102,10 +97,13 @@ class ApplicationController < Sinatra::Base
 	post '/search' do 
 		country = Country.new
 		sub_request_call = country.country_name
-		@search_list = country.call_api(sub_request_call, params["query"])
-		@search_list
+		@result_list = country.call_api(sub_request_call, params["query"])
+		@result_list
 		content_type 'text/html'
-		erb :search, :layout => false
+		erb :result, :layout => false
 	end
+
+
+
 
 end
