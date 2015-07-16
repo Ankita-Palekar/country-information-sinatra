@@ -24,7 +24,8 @@ class ApplicationController < Sinatra::Base
 
 	get '/all' do 
 		countries = Country.new
-		@country_list = countries.get_all_countries
+		sub_request_call = countries.all_countries
+		@country_list = countries.call_api(sub_request_call)
 		@alpha = countries.country_code
 		erb :country_list
 	end
@@ -32,7 +33,8 @@ class ApplicationController < Sinatra::Base
 
 	get '/country/:country_code' do 
 		country = Country.new
-		@country_information = country.get_country_information(params["country_code"])
+		sub_request_call = country.country_code
+		@country_information = country.call_api(sub_request_call,params["country_code"])
 		@calling_code = country.calling_code
 		@currency = country.currency
 		@region = country.region
@@ -40,51 +42,55 @@ class ApplicationController < Sinatra::Base
 		@country_name = country.country_name
 		@country_code = country.country_code	
 		@lang = country.lang
-
 		@image_list = country.get_country_images(@country_information["name"])
 		# puts @get_images.inspect
-
 		erb :country
 	end
 
 	get '/region/:region' do
 		country = Country.new
-		@country_list = country.get_region_countries(params["region"])
+		sub_request_call = country.region
+		@country_list = country.call_api(sub_request_call, params["region"])
 		@alpha = country.country_code
 		erb :country_list
 	end
 
 	get '/subregion/:sub_region' do
 		country = Country.new
-		@country_list = country.get_sub_region_countries(params["sub_region"])
+		sub_request_call = country.sub_region
+		@country_list = country.call_api(sub_request_call, params["sub_region"])
 		@alpha = country.country_code
 		erb :country_list
 	end
 
 	get '/callingcode/:calling_code' do
 		country = Country.new
-		@country_list = country.get_country_on_calling_code(params["calling_code"])
+		sub_request_call = country.calling_code
+		@country_list = country.call_api(sub_request_call, params["calling_code"])
 		@alpha = country.country_code
 		erb :country_list
 	end
 
 	get '/currency/:currency' do
 		country = Country.new
-		@country_list= country.get_same_currency_countries(params["currency"])
+		sub_request_call = country.currency
+		@country_list= country.call_api(sub_request_call, params["currency"])
 		@alpha = country.country_code
 		erb :country_list
 	end
 
 	get '/lang/:language_code' do
 		country = Country.new
-		@country_list = country.get_same_language_countries(params["language_code"])
+		sub_request_call = country.lang
+		@country_list = country.call_api(sub_request_call,params["language_code"])
 		@alpha = country.country_code
 		erb :country_list
 	end
 
-	post '/search' do
+	get '/search/:query' do 
 		country = Country.new
-		@search_list = country.get_search_result(params["query"])
+		sub_request_call = country.country_name
+		@search_list = country.call_api(sub_request_call, params["query"])
 		@search_list
 		content_type 'text/html'
 		erb :search, :layout => false
