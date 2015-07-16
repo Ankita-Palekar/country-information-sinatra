@@ -1,6 +1,6 @@
 class Country
 	#needs to fetch all countries related 
-	attr_accessor :all_countries, :calling_code, :currency, :region, :sub_region, :country_name, :country_code, :lang, :subregion, :substring, :data_initialisation, :calling_codes_set,  :region_names_set, :sub_region_names_set, :language_codes_set, :cuurencies_set
+	attr_accessor :all_countries, :calling_code, :currency, :region, :sub_region, :country_name, :country_code, :lang, :subregion, :substring, :data_initialisation, :calling_codes_set,  :region_names_set, :sub_region_names_set, :language_codes_set, :cuurencies_set, :country_code_set
 		
 	def initialize
 		@base_uri = "https://restcountries.eu/rest/v1"
@@ -17,10 +17,11 @@ class Country
 		@lang = "/lang/"
 		@data_initialisation = 0
 		@region_names_set = Set.new
-		@calling_codes_set = Set.new
+		@country_code_set = Set.new
 		@sub_region_names_set = Set.new
-		@region_names_set = Set.new
+		@calling_codes_set = Set.new
 		@language_codes_set = Set.new
+		@cuurencies_set = Set.new
  	end
 
 
@@ -39,41 +40,20 @@ class Country
 		result
 	end
 
-	private 
- 	def set_accessory_data()
- 		
- 	end
-
+	
  	def get_all_information()
- 		all_data =  call_api('/all')
-
+ 		all_data =  call_api(@all_countries)
  		all_data.each do |country|
  			@region_names_set.add country["region"] 
  			@sub_region_names_set.add country["subregion"]
- 			@calling_codes_set.add country["callingCodes"].values
- 			@cuurencies_set.add country["currencies"].values
- 			@language_codes_set.add country["languages"].values
- 			@country_code_set.add country["alpha2Code"]
+ 			country["callingCodes"].each {|code| @calling_codes_set.add code}
+ 			country["currencies"].each {|cur| @cuurencies_set.add cur}
+ 			country["languages"].each {|lang| @language_codes_set.add lang}
+ 			@country_code_set.add country["alpha2Code"]   
+ 			@country_code_set.add country["alpha3Code"]   
+ 			@@data_initialisation = 1
  		end
 
- 		puts @region_names_set.inspect
- 		puts "==============="
-
- 		puts @sub_region_names_set.inspect
- 		puts "==============="
-
- 		puts @cuurencies_set.inspect
- 		puts "==============="
-
- 		puts @language_codes_set.inspect
- 		puts "==============="
-
-
- 		puts @country_code_set.inspect
- 		puts "==============="
-
- 		puts @.inspect
- 		puts "==============="
 
  	end
 end

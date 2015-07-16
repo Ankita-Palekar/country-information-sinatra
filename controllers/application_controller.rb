@@ -27,6 +27,10 @@ class ApplicationController < Sinatra::Base
 	# get '/404' do 
 	# 	erb :404
 	# end
+	get '/test' do
+		country = Country.new
+	  country.get_all_information
+	end
 
 	get '/all' do 
 		countries = Country.new
