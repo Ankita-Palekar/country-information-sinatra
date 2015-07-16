@@ -6,3 +6,11 @@
 ul.country{
 	list-style: none
 }
+.search-country-header{
+	text-align: center;
+}
+
+input.search-countries{
+	height: 50px	;
+}
+

@@ -1,17 +1,16 @@
 <div class="page-header">
-	<h3>
- 		Welcome
+	<h3 class="search-country-header">
+		Search for Countries
 	</h3>
-		<% @all_countries.each do |country|  %>
-			<%= "#{country['name']}" %>
-			<%= "#{country['capital']}" %>
-			<%= "#{country['region']}" %>
-			<%= "#{country['subregion']}" %>
-			<%= "#{country['currencies'][0]}" %>
-			<%= "#{country['language']}" %>
-		<% end %>
-	<p>
-	</p>
+	<div class="row">
+		<div class="span12">
+			<div class="offset2 span8">
+				<input class="input-block-level search-countries" id="search-countries"  type="text" placeholder=".input-block-level">
+			</div>
+		</div>
+	</div>
+	<div class="search-result-container">
+	</div>
 </div>
  
 	  
