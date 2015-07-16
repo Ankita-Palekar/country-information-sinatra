@@ -1,3 +1,6 @@
+
+
+
 <div class="row">
 	<div class="span12 single-country">
 		 <div class="hero-unit">
@@ -5,7 +8,8 @@
 				<div class="row">
 					<div class="span12">
 						<div class="span7">
-							<div id="map_canvas" width="100">	
+							<div id="map-canvas">	
+
 							</div>
 						</div>
 						<div class="span5">		
@@ -16,6 +20,7 @@
 					  			<%= @country_information["region"] %>
 					  		</a> 
 					  	</p>
+					  	<!--  @TODO  change the gsub simply 2 times need to reconver find alternative way-->
 					  	<p>
 					  		subregion: 
 						  	<a href=<%= (@sub_region + @country_information["subregion"].gsub!(' ', '%20')).strip %> >
@@ -45,7 +50,6 @@
 							  	</a>
 								<% end %>
 							</p>
-
 					  	<p>countrycode: <%= @country_information["alpha2Code"] %></p>
 					  	<p>latlong: 	<%= @country_information["latlng"][0] %><%=	@country_information["latlng"][1]%> 
 					  	</p>
@@ -56,7 +60,6 @@
 		 </div>
 	</div>
 </div>
-
 <!-- <div class="row">
 	<div class="span12">
 		<div id="map-canvas"></div>
@@ -74,35 +77,6 @@
 		</div>
 	</div>
 <% end %>
-
-
- 
- 
-
-<script>
-    // function initialize() {
-    // 	var lat = <%=  @country_information["latlng"][0] %>
-    // 	var long = <%=  @country_information["latlng"][1] %>
-    //   var latlong = new google.maps.LatLng(lat, long);
-    //   var myOptions = {
-    //     zoom: 8,
-    //     center: latlong,
-    //     mapTypeId: google.maps.MapTypeId.ROADMAP
-    //   }
-    //   var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-    // }
-
-    // function loadScript() {
-    //   var script = document.createElement("script");
-    //   script.type = "text/javascript";
-    //   script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=initialize";
-    //   document.body.appendChild(script);
-    // }
-
-    // window.onload = loadScript;
-
-
-</script>
 
 
 <!-- 

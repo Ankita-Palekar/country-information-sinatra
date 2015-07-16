@@ -14,6 +14,12 @@ class ApplicationController < Sinatra::Base
 
 	# not_found{redirect "/404"}
 	
+	# call_all = Proc.new do |sub_request_call, param| 
+	# 	@country_list = country.call_api(sub_request_call, params["calling_code"])
+	# 	@alpha = country.country_code
+	# 	erb :country_list
+	# end
+
 	get '/' do 
 		erb :index
 	end
@@ -89,7 +95,7 @@ class ApplicationController < Sinatra::Base
 		erb :country_list
 	end
 
-	get '/search/:query' do 
+	post '/search' do 
 		country = Country.new
 		sub_request_call = country.country_name
 		@search_list = country.call_api(sub_request_call, params["query"])

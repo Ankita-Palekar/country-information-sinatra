@@ -1,78 +1,37 @@
 <!doctype html>
 <html lang="en">
   <head>
-  <%= bootstrap_assets %>
-   
+ 
+   <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/stylesheets/main.css">
   <script src="https://maps.googleapis.com/maps/api/js"></script>
-  <style>
-    #map-canvas{
-      width: 500px;
-      height: 400px;
-      background-color: #CCC;
-      }
-  </style>
-
   </head>
   <body>
   <header>
    <div class="navbar navbar-inverse">
      <div class="navbar-inner">
        <a class="brand" href="/">Country Information</a>
+       <ul class="nav">
+         <li><a href="/all">All</a></li>
+       </ul>
      </div>
    </div>
   </header>
-  <sidebar>
+  <section>
     <div class="container">
-      <div class="row-fluid">
-       <section>
-        <div class="row">
-          <div class="span12">
-            <div class="span3">
-             <div class="sidebar" data-spy="affix-top" data-offset-top="200">
-              <ul class="nav nav-list affix">
-                <li><a href="/all">All Countries</a> </li>
-                <li>sort by</li>
-                <li>language</li>
-                <li>region</li>
-                <li></li>
-              </ul>
-             </div>
-            </div>
-            <div class="span9">
-              <%= yield %>
-            </div>  
-          </div>
-        </div>
-       </section>
+      <div class="row">
+        <%= yield %>
       </div>
     </div>
-  </sidebar>
+  </section>
   <footer>
     footer will come here
   </footer>
   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
   <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-  <script src="javascripts/typeahead.js"></script>
+  <script src="/javascripts/bootstrap.min.js"></script>
   <script src="/javascripts/main.js"></script>
-  <script>
-    // var map = new google.maps.Map();
-    // $("#map-canvas").load(function()  {
-    //   function initialize() {
-    //     console.log("map")
-    //     var mapCanvas = document.getElementById('map-canvas');
-    //     var mapOptions = {
-    //       center: new google.maps.LatLng(44.5403, -78.5463),
-    //       zoom: 8,
-    //       mapTypeId: google.maps.MapTypeId.ROADMAP
-    //     }
-    //     var map = new google.maps.Map(mapCanvas, mapOptions);
-    //    }
-    // })
-    // google.maps.event.addDomListener(window, 'load', initialize);
-
-  </script>
 
   </body>
 </html>

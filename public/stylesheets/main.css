@@ -1,10 +1,16 @@
-.country-block{
+/*.country-block{
 	width: 100%;
 	background-color: #E4E4E4;
 	height: 120px;
 	border-radius: 29px;
 	margin-top: 2%;
 	margin-bottom: 2%;
+}
+
+#map-canvas{
+	width: 400px;
+	height: 400px;
+	background-color: #CCC;
 }
 
 .coutnry-list-title{
@@ -47,11 +53,16 @@ input.search-countries{
 }
 
 /*spinner loader css start*/
-.spinner {
+/*.spinner {
   margin: 100px auto 0;
   width: 70px;
   text-align: center;
   display: none;
+}
+
+.outer-search-div{
+	background-image:url("/images/background.jpg");
+	height: 300px;
 }
 
 .spinner > div {
@@ -64,7 +75,7 @@ input.search-countries{
   -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out;
   animation: sk-bouncedelay 1.4s infinite ease-in-out;
   /* Prevent first frame from flickering when animation starts */
-  -webkit-animation-fill-mode: both;
+ /* -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
 
@@ -91,5 +102,16 @@ input.search-countries{
     transform: scale(1.0);
     -webkit-transform: scale(1.0);
   }
-}
+}*/ 
 /*spinner loader css end*/
+
+
+#map-canvas{
+	width: 100%;
+	height: 300px;
+	background-color: #ccc;
+}
+
+ul.country-list{
+  text-align: center;
+}

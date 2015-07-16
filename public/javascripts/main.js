@@ -1,8 +1,6 @@
 $(document).ready(function(){
 	$('#search-countries').bind('form_submit_on_enter',function() {
-			$('.spinner').show()
-			$('#search-result').hide()
-			query_string = $(this).val()
+		query_string = $(this).val()
 			$.ajax({
 					url : "/search",
 					method : "POST",
@@ -12,9 +10,7 @@ $(document).ready(function(){
 			 .done(function(data, textstatus, jqXHR) {
 					console.log(data)
 					if (jqXHR.status == 200) {
-						$('.spinner').hide()
-						$("#search-result").html(data)
-						$("#search-result").show()
+						$("#country-search-list").html(data)
 					};
 			  })
 			 .fail(function(data, textstatus, jqXHR) {
@@ -29,62 +25,48 @@ $(document).ready(function(){
 		 } 
 	})
 
-// for google map
-	// var map = new google.maps.Map();
- // 	function initialize() {
- // 	   var mapCanvas = document.getElementById('map-canvas');
- // 	   var mapOptions = {
- // 	     center: new google.maps.LatLng(44.5403, -78.5463),
- // 	     zoom: 8,
- // 	     mapTypeId: google.maps.MapTypeId.ROADMAP
- // 	   }
- // 	   var map = new google.maps.Map(mapCanvas, mapOptions);
- // 	 }
+	$('.country-search-list').on('click','ul.country-list>li',function(){
+		var country_name = $(this).data('name')
+		$('#modal-country-name').html(country_name)
+		$('#country-capital').html($(this).data('capital'))
+		$('#country-region').html($(this).data('region'))
+		$('#country-sub-region').html($(this).data('sub-region'))
+		$('#country-population').html($(this).data('population'))
+		$('#country-calling-codes').html($(this).data('calling-codes'))
+		$('#country-top-level-domain').html($(this).data('top-level-domain'))
+		$('#country-country-code').html($(this).data('alpha-two-code') +"   " +$(this).data('alpha-three-code'))
+		$('#country-currencies').html($(this).data('currencies'))
+		$('#country-languages').html($(this).data('languages'))
+		$('#country-native-name').html($(this).data('native-name'))
+		$('#country-modal').modal('toggle');
+	})
 
- // 	google.maps.event.addDomListener(window, 'load', initialize);
+	function initialize() {
+	       var mapCanvas = document.getElementById('map-canvas');
+	       var latlong = new google.maps.LatLng(44.5403, -78.5463)
+	      
+	       var mapOptions = {
+	         center: latlong,
+	         zoom: 8,
+	         mapTypeId: google.maps.MapTypeId.ROADMAP
+	       }
+	       var map = new google.maps.Map(mapCanvas, mapOptions)
+	       var marker = new google.maps.Marker({
+	             position: latlong,
+	             map: map,
+	             title: 'country name'
+	         });
+	     }
+	     google.maps.event.addDomListener(window, 'load', initialize);
 
-	// var substringMatcher = function(strs) {
-	//   return function findMatches(q, cb) {
-	//     var matches, substringRegex;
-	 
-	//     // an array that will be populated with substring matches
-	//     matches = [];
-	 
-	//     // regex used to determine if a string contains the substring `q`
-	//     substrRegex = new RegExp(q, 'i');
-	 
-	//     // iterate through the pool of strings and for any string that
-	//     // contains the substring `q`, add it to the `matches` array
-	//     $.each(strs, function(i, str) {
-	//       if (substrRegex.test(str)) {
-	//         matches.push(str);
-	//       }
-	//     });
-	 
-	//     cb(matches);
-	//   };
-	// };
-	 
-	// var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-	//   'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-	//   'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-	//   'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-	//   'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-	//   'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-	//   'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-	//   'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-	//   'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-	// ];
-	 
-	// $('#search-countries.typeahead').typeahead({
-	//   hint: true,
-	//   highlight: true,
-	//   minLength: 1
-	// },
-	// {
-	//   name: 'states',
-	//   source: substringMatcher(states)
-	// });	
+	     var marker_dynamic = new google.maps.LatLng(21.0000, 78.0000)
 
+	     // $('body').on('click',function(){
+	     // 		var marker = new google.maps.Marker({
+	     // 		      position: marker_dynamic,
+	     // 		      map: map,
+	     // 		      title: 'country name'
+	     // 		  });
+	     // })
 
 })
