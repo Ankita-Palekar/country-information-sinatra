@@ -1,0 +1,18 @@
+ <div class="countries-category-accordian" id="countries-category-accordian">
+  <div class="accordion" id="accordion2">
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle text-center" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+          <%= @category_name %>
+        </a>
+      </div>
+      <div id="collapseOne" class="accordion-body collapse in text-center">
+        <% @result_list.each do |region| %>
+          <div  class="accordion-inner  category-pannel" data-pannel-name="<%= @set_pannel_name %>">
+            <a href="<%= @set_pannel_name +'?'+'region_code='+region %>"><%= region %></a> 
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

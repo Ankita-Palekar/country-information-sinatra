@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	function process_ajax(request_uri, data){
 		 console.log(request_uri)
-		if (typeof(a)==='undefined') data = "";
+		if (typeof(data)==='undefined') data = "";
 		$.ajax({
 				url : request_uri,
 				method : "GET",
@@ -45,7 +45,7 @@ $(document).ready(function(){
 	})
 
 	//for search result
- 	$('#country-display-list').on('click','ul.country-list>li',function(){
+ 	$('#item-display-list').on('click','ul.country-list>li',function(){
 		var country_name = $(this).data('name')
 		$('#modal-country-name').html(country_name)
 		$('#country-capital').html($(this).data('capital'))
@@ -75,29 +75,30 @@ $(document).ready(function(){
  	//for all other modals
 
 	function initialize() {
-		var mapCanvas = document.getElementById('map-canvas');
-		var latlong = new google.maps.LatLng(44.5403, -78.5463)
-		var mapOptions = {
-		 center: latlong,
-		 zoom: 8,
-		 mapTypeId: google.maps.MapTypeId.ROADMAP
-		}
-		var map = new google.maps.Map(mapCanvas, mapOptions)
-		var marker = new google.maps.Marker ({
-	     position: latlong,
-	     map: map,
-	     title: 'country name'
-		 });
+	  geocoder = new google.maps.Geocoder();
+	  var latlng = new google.maps.LatLng(21.0000, 78.0000);
+	  var mapOptions = {
+	    zoom: 8,
+	    center: latlng
+	  }
+	  map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 	}
-	google.maps.event.addDomListener(window, 'load', initialize);
-	var marker_dynamic = new google.maps.LatLng(21.0000, 78.0000)
 
-	     // $('body').on('click',function(){
-	     // 		var marker = new google.maps.Marker({
-	     // 		      position: marker_dynamic,
-	     // 		      map: map,
-	     // 		      title: 'country name'
-	     // 		  });
-	     // })
+	function codeAddress() {
+	    var address = document.getElementById("address").value;
+	    geocoder.geocode( { 'address': address}, function(results, status) {
+	      if (status == google.maps.GeocoderStatus.OK) {
+	        map.setCenter(results[0].geometry.location);
+	        var marker = new google.maps.Marker({
+	            map: map,
+	            position: results[0].geometry.location
+	        });
+	      } else {
+	        alert("Geocode was not successful for the following reason: " + status);
+	      }
+	    });
+	  }
+	
+	google.maps.event.addDomListener(window, 'load', initialize);	
 
 })

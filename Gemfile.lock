@@ -2,7 +2,6 @@ GEM
   remote: https://rubygems.org/
   specs:
     backports (3.6.5)
-    bcrypt-ruby (3.0.1)
     celluloid (0.16.0)
       timers (~> 4.0.0)
     ffi (1.9.10)
@@ -13,9 +12,6 @@ GEM
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
     multi_json (1.11.2)
-    mustache (0.99.8)
-    mustache-sinatra (1.0.1)
-      mustache (<= 0.99.8)
     rack (1.6.4)
     rack-protection (1.5.3)
       rack
@@ -46,9 +42,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt-ruby (~> 3.0.0)
   json
-  mustache-sinatra
   rerun
   sinatra
   sinatra-contrib

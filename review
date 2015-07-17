@@ -1,0 +1,15 @@
+Mistakes 
+never ever controllers logic in view and modal inside controller
+modal should be able tocall it in  irb
+git commit -a
+cyclefor calling every 6
+
+modal data should not be leaked ot hte controller
+
+in views also object should not be passed directly because if we are changin gapi then we will have to change views hash with respect to the api (object needs to be created in modal)
+
+ruby variadic keyword arguments ==> read on it
+
+spalting
+opts = {somet hash}
+function(**opts)
