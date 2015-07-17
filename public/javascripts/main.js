@@ -1,4 +1,23 @@
 $(document).ready(function(){
+	function process_ajax(request_uri, data){
+		 console.log(request_uri)
+		if (typeof(a)==='undefined') data = "";
+		$.ajax({
+				url : request_uri,
+				method : "GET",
+				dataType : "html"
+			})
+		 .done(function(data, textstatus, jqXHR) {
+				console.log(data)
+				if (jqXHR.status == 200) {
+					$('#countries-category-accordian').hide() //hiding regions list
+					$("#country-display-list").html(data)
+				};
+		  })
+		 .fail(function(data, textstatus, jqXHR) {
+		  })
+	}
+
 	$('#search-countries').bind('form_submit_on_enter',function() {
 		query_string = $(this).val()
 		$.ajax({
@@ -42,25 +61,11 @@ $(document).ready(function(){
 		$('#country-modal').modal('toggle');
 	})
 
- 	$('.region-name').on('click',function(){
- 		 var region_name =  $(this).text().trim()
- 		 console.log(region_name)
-		$.ajax({
-				url : "/region/"+region_name,
-				method : "GET",
-				dataType : "html"
-			})
-		 .done(function(data, textstatus, jqXHR) {
-				console.log(data)
-				if (jqXHR.status == 200) {
-					$('#countries-category-accordian').hide() //hiding regions list
-					$("#country-display-list").html(data)
+	$('.category-pannel').on('click',function(){ 	
+		var request_uri = $(this).data('pannel-name') + $(this).text().trim()
+		process_ajax(request_uri)
+	})
 
-				};
-		  })
-		 .fail(function(data, textstatus, jqXHR) {
-		  })
- 	})
 
  	$('#pannel-show').on('click',function(){
  		$('#countries-category-accordian').show() //

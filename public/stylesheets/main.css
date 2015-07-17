@@ -120,6 +120,6 @@ ul.country-list{
   display: none;
 }
 */
-.region-name, .pannel-show{
+.category-pannel, .pannel-show{
   cursor: pointer;
 }

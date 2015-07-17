@@ -1,0 +1,40 @@
+ <%= erb :modal %>
+ <div class="span12">
+    <div class="row">
+      <div class="span8">
+        <div id="map-canvas">
+          
+        </div>
+      </div>
+      <div class="span4 regions">
+        <div id="pannel-show" class="text-center pannel-show">
+          <i class="icon-arrow-left"></i>
+        </div>
+        <div class="countries-category-accordian" id="countries-category-accordian">
+          <div class="accordion" id="accordion2">
+            <div class="accordion-group">
+              <div class="accordion-heading">
+                <a class="accordion-toggle text-center" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                  <%= @category_name %>
+                </a>
+              </div>
+              <div id="collapseOne" class="accordion-body collapse in text-center">
+                <% @result_list.each do |region| %>
+                  <div class="accordion-inner  category-pannel" data-pannel-name="<%= @set_pannel_name %>">
+                    <%= region %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="country-display-list">
+          
+        </div>
+      </div>
+      <div class="result">
+        
+      </div>
+    </div>
+ </div>
+
