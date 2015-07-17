@@ -29,7 +29,9 @@ class Country
 		@language_codes_set = Set.new
 		# @@cuurencies_set = Set.new
 		
-		# REVIEW -- WTF is this for?!!
+		# REVIEW -- At the time when the app is started, make the API call to
+		# fetch ALL the country data. From that data exract out the unique region,
+		# subregion, currency, etc. list programmatically.
 
 		@region_names_set = ["Asia", "Europe", "Africa", "Oceania", "Americas", ""].to_set
 		
