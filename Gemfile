@@ -2,7 +2,10 @@ source 'https://rubygems.org'
 gem "sinatra"
 gem "json"
 gem "sinatra-contrib"
-gem "bcrypt-ruby",	'~>3.0.0'
+
+# REVIEW -- remove unneeded gems, ALWAYS.
+# gem "bcrypt-ruby",	'~>3.0.0'
+# gem 'mustache-sinatra'
+
 gem "rerun"
 gem 'sinatra-twitter-bootstrap', '~> 2.3.2'
-gem 'mustache-sinatra'
