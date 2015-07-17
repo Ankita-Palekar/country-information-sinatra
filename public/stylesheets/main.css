@@ -1,68 +1,7 @@
-/*.country-block{
-	width: 100%;
-	background-color: #E4E4E4;
-	height: 120px;
-	border-radius: 29px;
-	margin-top: 2%;
-	margin-bottom: 2%;
-}
-
-#map-canvas{
-	width: 400px;
-	height: 400px;
-	background-color: #CCC;
-}
-
-.coutnry-list-title{
-	text-align: center;
-}
-
-.country{
-	margin: 0 auto;
-	display: block;
-}
-
-ul.country{
-	list-style: none;
-	text-align:center;
-	padding-top: 8%;
-  color: #22313F;
-}
-
-.search-country-header{
-	text-align: center;
-}
-
-input.search-countries{
-	height: 50px	;
-}
-
- 
-.country-grid > a:hover 
-{
-	text-decoration: none;
-}
-
-.single-country > .country-name{
-	text-align: center;
-}
-
-
-.country-people-img-div img{
-	width: 100%;
-}
-
-/*spinner loader css start*/
-/*.spinner {
+.spinner {
   margin: 100px auto 0;
   width: 70px;
   text-align: center;
-  display: none;
-}
-
-.outer-search-div{
-	background-image:url("/images/background.jpg");
-	height: 300px;
 }
 
 .spinner > div {
@@ -72,11 +11,8 @@ input.search-countries{
 
   border-radius: 100%;
   display: inline-block;
-  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out;
-  animation: sk-bouncedelay 1.4s infinite ease-in-out;
-  /* Prevent first frame from flickering when animation starts */
- /* -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
+  -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 }
 
 .spinner .bounce1 {
@@ -90,20 +26,19 @@ input.search-countries{
 }
 
 @-webkit-keyframes sk-bouncedelay {
-  0%, 80%, 100% { -webkit-transform: scale(0.0) }
+  0%, 80%, 100% { -webkit-transform: scale(0) }
   40% { -webkit-transform: scale(1.0) }
 }
 
 @keyframes sk-bouncedelay {
   0%, 80%, 100% { 
-    transform: scale(0.0);
-    -webkit-transform: scale(0.0);
+    -webkit-transform: scale(0);
+    transform: scale(0);
   } 40% { 
-    transform: scale(1.0);
     -webkit-transform: scale(1.0);
+    transform: scale(1.0);
   }
-}*/ 
-/*spinner loader css end*/
+}
 
 
 #map-canvas{
@@ -122,4 +57,8 @@ ul.country-list{
 */
 .category-pannel, .pannel-show{
   cursor: pointer;
+}
+
+.inline{
+  display: inline-block;
 }

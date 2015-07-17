@@ -15,7 +15,7 @@ $(document).ready(function(){
 				};
 		  })
 		 .fail(function(data, textstatus, jqXHR) {
-		  })
+		})
 	}
 
 	$('#search-countries').bind('form_submit_on_enter',function() {
@@ -26,15 +26,15 @@ $(document).ready(function(){
 				data : {query : query_string},
 				dataType : "html"
 			})
-		 .done(function(data, textstatus, jqXHR) {
+		.done(function(data, textstatus, jqXHR) {
 				console.log(data)
 				if (jqXHR.status == 200) {
-					$("#country-display-list").html(data)
+					$("#item-display-list").html(data)
 				};
 		  })
-		 .fail(function(data, textstatus, jqXHR) {
+		.fail(function(data, textstatus, jqXHR) {
 	 		  console.log("go have some walk")
-		  })
+		})
 	})
 
 	$('#search-countries').keydown(function(e){
@@ -54,10 +54,12 @@ $(document).ready(function(){
 		$('#country-population').html($(this).data('population'))
 		$('#country-calling-codes').html($(this).data('calling-codes'))
 		$('#country-top-level-domain').html($(this).data('top-level-domain'))
-		$('#country-country-code').html($(this).data('alpha-two-code') +"   " +$(this).data('alpha-three-code'))
+		$('#country-code').html($(this).data('alpha-two-code') +"   " +$(this).data('alpha-three-code'))
 		$('#country-currencies').html($(this).data('currencies'))
 		$('#country-languages').html($(this).data('languages'))
 		$('#country-native-name').html($(this).data('native-name'))
+
+		codeAddress(country_name)
 		$('#country-modal').modal('toggle');
 	})
 
@@ -84,20 +86,19 @@ $(document).ready(function(){
 	  map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 	}
 
-	function codeAddress() {
-	    var address = document.getElementById("address").value;
-	    geocoder.geocode( { 'address': address}, function(results, status) {
-	      if (status == google.maps.GeocoderStatus.OK) {
-	        map.setCenter(results[0].geometry.location);
-	        var marker = new google.maps.Marker({
-	            map: map,
-	            position: results[0].geometry.location
-	        });
-	      } else {
-	        alert("Geocode was not successful for the following reason: " + status);
-	      }
-	    });
-	  }
+	function codeAddress(address) {
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+        });
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+	}
 	
 	google.maps.event.addDomListener(window, 'load', initialize);	
 

@@ -137,10 +137,9 @@ class ApplicationController < Sinatra::Base
 
 	post '/search' do 
 		country = Country.new
-		sub_request_call = country.country_name
-		@result_list = country.call_api(sub_request_call, params["query"])
+		@result_list = country.get_country_search_result(:query => params["query"])
 		@result_list
 		content_type 'text/html'
-		erb :result, :layout => false
+		erb :country_list_block, :layout => false
 	end
 end
