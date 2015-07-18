@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	function process_ajax(request_uri, data){
-		 console.log(request_uri)
+		console.log(request_uri)
 		if (typeof(data)==='undefined') data = "";
 		$.ajax({
 				url : request_uri,
