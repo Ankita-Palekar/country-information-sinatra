@@ -48,7 +48,6 @@ $(document).ready(function(){
 		 } 
 	})
 
-
 	function make_strings (action, array_items) {
 		var item_string = ""
 		$.each(array_items,function(index,value){
@@ -72,7 +71,7 @@ $(document).ready(function(){
 		$('#country-population').html($(this).data('population'))
 		$('#country-calling-codes').html($(this).data('calling-codes'))
 		$('#country-top-level-domain').html($(this).data('top-level-domain'))
-		$('#country-code').html($(this).data('alpha-two-code') + "   " +$(this).data('alpha-three-code'))
+		$('#country-codes').html($(this).data('alpha-two-code') + "   " +$(this).data('alpha-three-code'))
 		$('#country-currencies').html(currencies_string)
 		$('#country-languages').html(languages_string)
 		$('#country-native-name').html($(this).data('native-name'))
@@ -112,7 +111,7 @@ $(document).ready(function(){
           position: results[0].geometry.location
         });
       } else {
-        alert("Geocode was not successful for the following reason: " + status);
+      	alert("Geocode was not successful for the following reason: " + status);
       }
     });
 	}

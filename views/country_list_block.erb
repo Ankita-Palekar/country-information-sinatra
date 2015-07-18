@@ -1,5 +1,4 @@
-
-<ul class="nav nav-tabs nav-stacked country-list">	
+<ul class="nav nav-tabs nav-stacked country-list">		
 	<% @result_list.each_with_index do |country, index| %>
  		<li data-name=<%= country['name']%>  data-capital=<%= country['capital']%> data-region=<%= country['region']%> data-sub-region=<%= country['subregion']%> data-population=<%= country['population']%> data-native-name=<%= country['nativeName']%> data-calling-codes=<%= country['callingCodes'].to_json%> data-toplevel-domain=<%= country['topLevelDomain'].to_json%> data-alpha-two-code = <%= country['alpha2Code']%> data-alpha-three-code=<%= country['alpha3Code']%> data-currencies = <%= country['currencies'].to_json %> data-languages = <%= country['languages'].to_json%>>
 	 		<a href="#">	
