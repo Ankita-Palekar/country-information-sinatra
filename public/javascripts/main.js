@@ -51,7 +51,7 @@ $(document).ready(function(){
 	function make_strings (action, array_items) {
 		var item_string = ""
 		$.each(array_items,function(index,value){
-		 	item_string += '<a class="country-specific-info" href="/countries?'+action+'=' + value + '">' + value + '</a>'
+		 	item_string += '<a class="country-specific-info" href="/'+action+'/' + value + '/countries">' + value + '</a>'
 		})
 		return item_string
 	}
@@ -66,7 +66,7 @@ $(document).ready(function(){
 		languages_string = make_strings('language',languages)
 		$('#modal-country-name').html(country_name)
 		$('#country-capital').html($(this).data('capital'))
-		$('#country-region').html('<a href="/countries?region_code='+$(this).data('region')+'">'+$(this).data('region')+'</a>')
+		$('#country-region').html('<a href="/region/'+$(this).data('region')+'/countries">'+$(this).data('region')+'</a>')
 		$('#country-sub-region').html($(this).data('sub-region'))
 		$('#country-population').html($(this).data('population'))
 		$('#country-calling-codes').html($(this).data('calling-codes'))

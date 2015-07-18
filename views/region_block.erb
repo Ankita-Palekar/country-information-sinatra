@@ -8,8 +8,8 @@
       </div>
       <div id="collapseOne" class="accordion-body collapse in text-center">
         <% @result_list.each do |region| %>
-          <div  class="accordion-inner  category-pannel" data-pannel-name="<%= @set_pannel_name %>">
-            <a href="<%= @set_pannel_name +'?'+'region_code='+region %>"><%= region %></a> 
+          <div  class="accordion-inner  category-pannel">
+            <a href="<%= @set_region_link + region  + @set_countries_link%>"><%= region %></a> 
           </div>
         <% end %>
       </div>
