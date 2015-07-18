@@ -27,6 +27,8 @@ class Country < Api
   def update_attributes(hash)
     hash.keys.each do |key|
       m = "#{key}="
+      # REVIEW -- read Ruby style guide. You do not need to put spaces after
+      # functional call braces.
       self.new.send( m, hash[key] ) if self.new.respond_to?( m )
     end
   end
