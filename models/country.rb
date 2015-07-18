@@ -3,6 +3,7 @@ class Country < Api
   
   attr_accessor :name, :capital, :altSpellings, :relevance, :population, :latlng, :demonym, :area, :gini, :timezones, :borders, :nativeName, :callingCodes, :topLevelDomain, :alpha2Code, :alpha3Code, :currencies, :languages
  
+
   def initialize
     @name = ""
     @capital = ""
