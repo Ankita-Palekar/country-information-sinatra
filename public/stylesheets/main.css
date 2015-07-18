@@ -71,6 +71,10 @@ ul.country-list{
   display: block;
 }
 
-.region-header{
+.region-header:hover, .region-header{
   color: #ccc;
+}
+
+a.country-specific-info{
+  padding-right: 5px;
 }

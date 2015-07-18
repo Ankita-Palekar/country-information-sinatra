@@ -52,7 +52,7 @@ $(document).ready(function(){
 	function make_strings (action, array_items) {
 		var item_string = ""
 		$.each(array_items,function(index,value){
-		 	item_string += '<a href="/countries?'+action+'=' + value + '">' + value + '</a>'
+		 	item_string += '<a class="country-specific-info" href="/countries?'+action+'=' + value + '">' + value + '</a>'
 		})
 		return item_string
 	}
@@ -60,9 +60,7 @@ $(document).ready(function(){
 	//for search result
  	$('#country-display-list').on('click','ul.country-list>li',function(){
 		var country_name = $(this).data('name')
-		var calling_codes_string , currencies_string, languages_string = ""
-		var calling_codes = $(this).data('calling-codes')
- 		calling_codes_string = make_strings('calling_codes',calling_codes)
+		var currencies_string, languages_string = ""
 		var currencies = $(this).data('currencies')
 		currencies_string = make_strings('currency',currencies)
 		var languages = $(this).data('languages')
@@ -72,7 +70,7 @@ $(document).ready(function(){
 		$('#country-region').html('<a href="/countries?region_code='+$(this).data('region')+'">'+$(this).data('region')+'</a>')
 		$('#country-sub-region').html($(this).data('sub-region'))
 		$('#country-population').html($(this).data('population'))
-		$('#country-calling-codes').html(calling_codes_string)
+		$('#country-calling-codes').html($(this).data('calling-codes'))
 		$('#country-top-level-domain').html($(this).data('top-level-domain'))
 		$('#country-code').html($(this).data('alpha-two-code') + "   " +$(this).data('alpha-three-code'))
 		$('#country-currencies').html(currencies_string)

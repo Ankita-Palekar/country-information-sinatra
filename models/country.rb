@@ -21,4 +21,14 @@ class Country < Api
   	result_list = call_api(@@country_name, query)
   	result_list
   end
+
+  def get_currency_specific_countries(currency:)
+    result_list = call_api(@@currency, currency)
+    result_list
+  end
+
+  def get_language_specific_countries(language:)
+    result_list = call_api(@@lang, language)
+    result_list
+  end
 end

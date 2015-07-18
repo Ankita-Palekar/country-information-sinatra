@@ -9,8 +9,6 @@ class ApplicationController < Sinatra::Base
 	get '/' do 
 		erb :index
 	end
-	#===============@TODO please make lambda for below repeated code 
-	#to call regions accordian and all other information 
 
 	get '/test'  do
 		region = Region.new
@@ -22,6 +20,9 @@ class ApplicationController < Sinatra::Base
 		puts params.inspect
 		country = Country.new
 		@result_list = country.get_region_specific_countries(:region_code => params["region_code"]) if params.has_key?("region_code") 
+		@result_list = country.get_currency_specific_countries(:currency => params["currency"]) if params.has_key?("currency") 
+		@result_list = country.get_language_specific_countries(:language => params["language"]) if params.has_key?("language") 
+
 		erb :category_pannel do
 			erb :country_list_block, :layout => false  
 		end
@@ -36,6 +37,8 @@ class ApplicationController < Sinatra::Base
 			erb :region_block, :layout => false  
 		end
 	end
+
+
 
 	# get '/subregions' do
 	# 	country = Country.new
