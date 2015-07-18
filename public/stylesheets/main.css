@@ -70,3 +70,7 @@ ul.country-list{
 .country-display-list{
   display: block;
 }
+
+.region-header{
+  color: #ccc;
+}
