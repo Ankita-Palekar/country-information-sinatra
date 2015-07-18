@@ -59,22 +59,23 @@ $(document).ready(function(){
 	//for search result
  	$('#country-display-list').on('click','ul.country-list>li',function(){
 		var country_name = $(this).data('name')
-		var currencies_string, languages_string = ""
-		var currencies = $(this).data('currencies')
-		currencies_string = make_strings('currency',currencies)
-		var languages = $(this).data('languages')
-		languages_string = make_strings('language',languages)
+		// var currencies_string, languages_string = ""
+		// var currencies = $(this).data('currencies')
+		// currencies_string = make_strings('currency',currencies)
+		// var languages = $(this).data('languages')
+		// languages_string = make_strings('language',languages)
 		$('#modal-country-name').html(country_name)
-		$('#country-capital').html($(this).data('capital'))
-		$('#country-region').html('<a href="/region/'+$(this).data('region')+'/countries">'+$(this).data('region')+'</a>')
-		$('#country-sub-region').html($(this).data('sub-region'))
+		// $('#country-capital').html($(this).data('capital'))
+		// $('#country-region').html('<a href="/region/'+$(this).data('region')+'/countries">'+$(this).data('region')+'</a>')
+		// $('#country-sub-region').html($(this).data('sub-region'))
 		$('#country-population').html($(this).data('population'))
-		$('#country-calling-codes').html($(this).data('calling-codes'))
-		$('#country-top-level-domain').html($(this).data('top-level-domain'))
-		$('#country-codes').html($(this).data('alpha-two-code') + "   " +$(this).data('alpha-three-code'))
-		$('#country-currencies').html(currencies_string)
-		$('#country-languages').html(languages_string)
-		$('#country-native-name').html($(this).data('native-name'))
+		// $('#country-calling-codes').html($(this).data('calling-codes'))
+		// $('#country-top-level-domain').html($(this).data('top-level-domain'))
+		$('#country-codes').html($(this).data('country-code'))
+		// $('#country-currencies').html(currencies_string)
+		// $('#country-languages').html(languages_string)
+		// $('#country-native-name').html($(this).data('native-name'))
+		
 		codeAddress(country_name)
 		$('#country-modal').modal('toggle');
 	})

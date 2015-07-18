@@ -7,7 +7,5 @@ require './controllers/application_controller.rb'
 require 'open-uri'
 require 'set'
 require './models/country.rb'
-require './models/region.rb'
 require './models/interface.rb'
-require './models/currency.rb'
-require './models/language.rb'
+ 

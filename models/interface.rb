@@ -1,19 +1,30 @@
 class Interface
 
-	@@base_uri = "https://restcountries.eu/rest/v1"
-	@@all_countries = "/all"
-	@@calling_code = "/callingcode/"
-	@@currency = "/currency/"
-	@@region = "/region/"
-	@@sub_region = "/subregion/"
-	@@country_name = "/name/"
-	@@country_code = "/alpha/"
-	@@lang = "/lang/"
+	# "/searchJSON?q=goa&maxRows=10&username=AnkitaPalekar&style=full"
+
+	@@base_uri = "http://api.geonames.org/"
+	@@search = "/searchJSON"
+	@@max_rows = "&maxRows="
+	@@username = "&username=AnkitaPalekar"
+	@@style = "&style=full"
+	@@query = "&q="
+	@@countryInfo = "/countryInfoJSON"
+	@@question_mark = "?"
+
+	# @@all_countries = "/all"
+	# @@calling_code = "/callingcode/"
+	# @@currency = "/currency/"
+	# @@region = "/region/"
+	# @@sub_region = "/subregion/"
+	# @@country_name = "/name/"
+	# @@country_code = "/alpha/"
+	# @@lang = "/lang/"
 
 
 	#non api related link  made for the view purpose /
 	#eg /region/Asia/countries
 	@@countries_link = '/countries'
+
 	
 	def initialize
 		
@@ -28,9 +39,10 @@ class Interface
 	end
 
  	def self.call_api(action, request_code = "")
-			request_uri = (@@base_uri + action + request_code).strip
-			request_uri = URI.encode(request_uri)
-			result = []
+
+		request_uri = (@@base_uri + action +  @@style + @@username  + request_code).strip
+		request_uri = URI.encode(request_uri)
+		result = []
  		begin	
 			result = JSON.parse(open(request_uri).read)
 			result
@@ -51,17 +63,19 @@ class Interface
 
 	def self.make_country_objects_array(country_list)
 		country_object_array = []
+		# --@TODO use map and reduce after swaping
 		country_list.each do |country_item|
 			country_hash = {}
 			country = Country.new(country_item)
-			# country.instance_variables.each {|var| country_hash[var.to_s.delete("@")] = country.instance_variable_get(var) }
 			country_object_array.push country
 		end
 		country_object_array
 	end
 
 	def self.search_countries(query_substring)
-		country_list = self.call_api(@@country_name, query_substring)
+		query_substring = @@query + query_substring
+		country_list = self.call_api(@@search+@@question_mark, query_substring)
+		country_list = country_list["geonames"]
 		country_object_list = make_country_objects_array(country_list)
 		puts country_object_list.inspect
 		country_object_list
@@ -84,6 +98,5 @@ class Interface
 		country_object_array = self.make_country_objects_array(country_list)
 		country_object_array
 	end
-
-
+ 
 end
