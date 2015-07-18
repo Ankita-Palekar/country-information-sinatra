@@ -1,12 +1,12 @@
 .spinner {
-  margin: 100px auto 0;
-  width: 70px;
+  margin: 15px auto 0;
+  width: 50px;
   text-align: center;
 }
 
 .spinner > div {
-  width: 18px;
-  height: 18px;
+  width: 13px;
+  height: 13px;
   background-color: #333;
 
   border-radius: 100%;
@@ -61,4 +61,12 @@ ul.country-list{
 
 .inline{
   display: inline-block;
+}
+
+.spinner{
+  display: none;
+}
+
+.country-display-list{
+  display: block;
 }

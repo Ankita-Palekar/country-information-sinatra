@@ -19,6 +19,9 @@ $(document).ready(function(){
 	}
 
 	$('#search-countries').bind('form_submit_on_enter',function() {
+		codeAddress($(this).val())
+		$('.spinner').show()
+		$('.country-display-list').hide()
 		query_string = $(this).val()
 		$.ajax({
 				url : "/search",
@@ -26,14 +29,15 @@ $(document).ready(function(){
 				data : {query : query_string},
 				dataType : "html"
 			})
-		.done(function(data, textstatus, jqXHR) {
-				console.log(data)
-				if (jqXHR.status == 200) {
-					$("#item-display-list").html(data)
-				};
-		  })
+		.done(function(data, textstatus, jqXHR) {	 
+			if (jqXHR.status == 200) {
+				$('.spinner').hide()
+				$('.country-display-list').show()
+				$("#country-display-list").html(data)
+			};
+		 })
 		.fail(function(data, textstatus, jqXHR) {
-	 		  console.log("go have some walk")
+	 		console.log("code failed")
 		})
 	})
 
@@ -44,21 +48,50 @@ $(document).ready(function(){
 		 } 
 	})
 
+
+	function make_strings (action, array_items) {
+		var item_string = ""
+		$.each(array_items,function(index,value){
+		 	item_string += '<a href="/countries?'+action+'=' + value + '">' + value + '</a>'
+		})
+		return item_string
+	}
+
 	//for search result
- 	$('#item-display-list').on('click','ul.country-list>li',function(){
+ 	$('#country-display-list').on('click','ul.country-list>li',function(){
 		var country_name = $(this).data('name')
+		var calling_codes_string , currencies_string, languages_string = ""
+
+		var calling_codes = $(this).data('calling-codes')
+		$.each(calling_codes,function(index,value){
+			calling_codes_string += '<a href="/countries?calling_code=' + value + '">' + value + '</a>'
+		})
+
+		var currencies = $(this).data('currencies')
+		$.each(currencies,function(index,value){
+			currencies_string += '<a href="/countries?currency=' + value + '">' + value + '</a>'
+		})
+
+		var languages = $(this).data('languages')
+		$.each(languages,function(index,value){
+			currencies_string += '<a href="/countries?language=' + value + '">' + value + '</a>'
+		})		
+
 		$('#modal-country-name').html(country_name)
 		$('#country-capital').html($(this).data('capital'))
-		$('#country-region').html($(this).data('region'))
+		$('#country-region').html('<a href="/countries?region_code='+$(this).data('region')+'">'+$(this).data('region')+'</a>')
 		$('#country-sub-region').html($(this).data('sub-region'))
 		$('#country-population').html($(this).data('population'))
-		$('#country-calling-codes').html($(this).data('calling-codes'))
+		 
+
+
+		$('#country-calling-codes').html(calling_codes_string)
 		$('#country-top-level-domain').html($(this).data('top-level-domain'))
-		$('#country-code').html($(this).data('alpha-two-code') +"   " +$(this).data('alpha-three-code'))
+		$('#country-code').html($(this).data('alpha-two-code') + "   " +$(this).data('alpha-three-code'))
+		 
 		$('#country-currencies').html($(this).data('currencies'))
 		$('#country-languages').html($(this).data('languages'))
 		$('#country-native-name').html($(this).data('native-name'))
-
 		codeAddress(country_name)
 		$('#country-modal').modal('toggle');
 	})
@@ -80,7 +113,7 @@ $(document).ready(function(){
 	  geocoder = new google.maps.Geocoder();
 	  var latlng = new google.maps.LatLng(21.0000, 78.0000);
 	  var mapOptions = {
-	    zoom: 8,
+	    zoom: 5,
 	    center: latlng
 	  }
 	  map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);

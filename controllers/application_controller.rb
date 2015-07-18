@@ -22,9 +22,7 @@ class ApplicationController < Sinatra::Base
 		puts params.inspect
 		country = Country.new
 		@result_list = country.get_region_specific_countries(:region_code => params["region_code"]) if params.has_key?("region_code") 
-		
 		erb :category_pannel do
-			erb :modal
 			erb :country_list_block, :layout => false  
 		end
 	end

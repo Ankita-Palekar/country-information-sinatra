@@ -1,19 +1,19 @@
- <%= erb :modal %>
- <div class="span12">
-    <div class="row">
-      <div class="span8">
-        <div id="map-canvas">
-          
-        </div>
-      </div>
-      <div class="span4 regions">
-        <div id="pannel-show" class="text-center pannel-show">
-          <i class="icon-arrow-left"></i>
-        </div>
-        <div id="item-display-list">
-          <%= yield %>
-        </div>
+<%= erb :modal %>
+<div class="span12">
+  <div class="row">
+    <div class="span8">
+      <div id="map-canvas">
+        
       </div>
     </div>
- </div>
+    <div class="span4 regions">
+      <div id="pannel-show" class="text-center pannel-show">
+        <i class="icon-arrow-left"></i>
+      </div>
+      <div id="country-display-list">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
+</div>
 
