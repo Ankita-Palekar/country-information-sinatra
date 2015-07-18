@@ -13,3 +13,12 @@ ruby variadic keyword arguments ==> read on it
 spalting
 opts = {somet hash}
 function(**opts)
+
+
+def initialize(title, id, opts={})
+  @title = title
+  @id = id
+  opts.each_pair do |k ,v|
+    self.send("#{k}=",v) if self.respond_to?("#{k}=")
+  end
+end

@@ -27,17 +27,17 @@ class ApplicationController < Sinatra::Base
 		@result_list = country.get_information(:action => Country.provide_language_link, :action_code => params["language"]) if params.has_key?("language") 
 		
 		@specific_result = "region specific result"
-		erb :category_pannel do
+		erb :category_panel do
 			erb :country_list_block, :layout => false  
 		end
 	end
 
 	get '/regions' do
-		region = Region.new
 		@category_name = "Regions"
-		@result_list = region.get_all_regions
-		@set_pannel_name = Region.provide_link
-		erb :category_pannel do
+		@set_pannel_name = Interface.provide_region_link
+		@result_list = Interface.get_all_regions
+		puts @result_list.inspect
+		erb :category_panel do
 			erb :region_block, :layout => false  
 		end
 	end
