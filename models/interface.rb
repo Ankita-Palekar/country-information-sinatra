@@ -28,10 +28,15 @@ class Interface
 	end
 
  	def self.call_api(action, request_code = "")
-		request_uri = (@@base_uri + action + request_code).strip
-		request_uri = URI.encode(request_uri)
-		result = JSON.parse(open(request_uri).read)
-		result
+			request_uri = (@@base_uri + action + request_code).strip
+			request_uri = URI.encode(request_uri)
+			result = []
+ 		begin	
+			result = JSON.parse(open(request_uri).read)
+			result
+ 		rescue Exception => e
+ 			result
+ 		end
 	end
 
 	def self.get_all_regions
@@ -49,8 +54,8 @@ class Interface
 		country_list.each do |country_item|
 			country_hash = {}
 			country = Country.new(country_item)
-			country.instance_variables.each {|var| country_hash[var.to_s.delete("@")] = country.instance_variable_get(var) }
-			country_object_array.push country_hash
+			# country.instance_variables.each {|var| country_hash[var.to_s.delete("@")] = country.instance_variable_get(var) }
+			country_object_array.push country
 		end
 		country_object_array
 	end
@@ -58,24 +63,23 @@ class Interface
 	def self.search_countries(query_substring)
 		country_list = self.call_api(@@country_name, query_substring)
 		country_object_list = make_country_objects_array(country_list)
+		puts country_object_list.inspect
 		country_object_list
 	end
 
-	#All country setter methods 
-
-	def self.set_region_specific_countries(region)
+	def self.get_region_specific_countries(region)
 		country_list = call_api(@@region, region)
 		country_object_array = self.make_country_objects_array(country_list)
 		country_object_array
 	end
 
-	def self.set_language_specific_countries(language)
+	def self.get_language_specific_countries(language)
 		country_list = call_api(@@lang, language)
 		country_object_array = self.make_country_objects_array(country_list)
 		country_object_array
 	end
 
-	def self.set_currency_specific_countries(currency)
+	def self.get_currency_specific_countries(currency)
 		country_list = call_api(@@currency, currency)
 		country_object_array = self.make_country_objects_array(country_list)
 		country_object_array

@@ -11,16 +11,14 @@ class ApplicationController < Sinatra::Base
 	end
 
 	get '/region/:region_name/countries' do
-		region = Region.new(params["region_name"])
-		@result_list = region.country_list
+		@result_list = Interface.get_region_specific_countries(params["region_name"])
 		erb :category_panel do
 			erb :country_list_block, :layout => false  
 		end
 	end
 
 	get '/language/:language_code/countries' do
-		language = Language.new(params["language_code"])
-		@result_list = language.country_list
+		@result_list = Interface.get_language_specific_countries(params["language_code"])
 		erb :category_panel do
 			erb :country_list_block, :layout => false  
 		end
@@ -28,8 +26,7 @@ class ApplicationController < Sinatra::Base
 
 
 	get '/currency/:currency_code/countries' do
-		currency = Currency.new(params["currency_code"])
-		@result_list = currency.country_list
+		@result_list = Interface.get_currency_specific_countries(params["currency_code"])
 		erb :category_panel do
 			erb :country_list_block, :layout => false  
 		end
@@ -41,7 +38,6 @@ class ApplicationController < Sinatra::Base
 		@set_region_link = Interface.provide_region_link
 		@set_countries_link = Interface.provide_country_link
 		@result_list = Interface.get_all_regions
-		puts @result_list.inspect
 		erb :category_panel do
 			erb :region_block, :layout => false  
 		end
@@ -49,7 +45,6 @@ class ApplicationController < Sinatra::Base
 
 	post '/search' do 
 		@result_list = Interface.search_countries(params["query"])
-		puts @result_list.inspect
 		content_type 'text/html'
 		erb :country_list_block, :layout => false
 	end

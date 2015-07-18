@@ -1,12 +1,16 @@
-<%= puts params.inspect %>
-
+<h6>
+Result list for 
+<%= "Region #{params["region_name"]}"  if params["region_name"] %>
+<%= "Currency #{params["currency_code"]}"  if params["currency_code"] %>
+<%= "Language #{params["language_code"]}"  if params["language_code"] %>
+<%= "search"  if params["query"] %>
+</h6>
 <ul class="nav nav-tabs nav-stacked country-list">		
 	<% @result_list.each_with_index do |country, index| %>
- 		<li data-name=<%= country['name']%>  data-capital=<%= country['capital']%> data-region=<%= country['region']%> data-sub-region=<%= country['subregion']%> data-population=<%= country['population']%> data-native-name=<%= country['nativeName']%> data-calling-codes=<%= country['callingCodes'].to_json%> data-toplevel-domain=<%= country['topLevelDomain'].to_json%> data-alpha-two-code = <%= country['alpha2Code']%> data-alpha-three-code=<%= country['alpha3Code']%> data-currencies = <%= country['currencies'].to_json %> data-languages = <%= country['languages'].to_json%>>
+ 		<li data-name=<%="#{country.name}"%>  data-capital=<%= "#{country.capital}"%> data-region=<%= "#{country.region}"%> data-sub-region=<%= "#{country.subregion}"%> data-population=<%= "#{country.population}"%> data-native-name=<%= "#{country.nativeName}"%> data-calling-codes=<%= "#{country.callingCodes.to_json}"%> data-toplevel-domain=<%= "#{country.topLevelDomain.to_json}"%> data-alpha-two-code = <%= "#{country.alpha2Code}"%> data-alpha-three-code=<%= "#{country.alpha3Code}"%> data-currencies = <%= "#{country.currencies.to_json}"  %> data-languages = <%= "#{country.languages.to_json}" %>>
 	 		<a href="#">	
-				<%= "#{country['name']}" %>
+				<%= "#{country.name}" %>
 	 		</a>
  		</li> 
-	<%= puts country["region"].inspect %>
 	<% end %>
 </ul>
