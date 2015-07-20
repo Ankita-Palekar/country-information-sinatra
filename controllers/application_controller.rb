@@ -11,7 +11,7 @@ class ApplicationController < Sinatra::Base
 	end
 
 	get '/region/:region_name/countries' do
-		@result_list = Interface.get_region_specific_countries(params["region_name"])
+		@result_list = Interface.search_countries(params["region_name"])
 		erb :category_panel do
 			erb :country_list_block, :layout => false  
 		end

@@ -62,41 +62,33 @@ class Interface
 
 
 	def self.make_country_objects_array(country_list)
-		country_object_array = []
-		# --@TODO use map and reduce after swaping
-		country_list.each do |country_item|
-			country_hash = {}
-			country = Country.new(country_item)
-			country_object_array.push country
-		end
-		country_object_array
+	 	country_list.collect {|country| Country.new(country)} 
 	end
 
 	def self.search_countries(query_substring)
 		query_substring = @@query + query_substring
 		country_list = self.call_api(@@search+@@question_mark, query_substring)
-		country_list = country_list["geonames"]
-		country_object_list = make_country_objects_array(country_list)
-		puts country_object_list.inspect
-		country_object_list
+		make_country_objects_array(country_list["geonames"])
 	end
 
 	def self.get_region_specific_countries(region)
 		country_list = call_api(@@region, region)
-		country_object_array = self.make_country_objects_array(country_list)
-		country_object_array
+		self.make_country_objects_array(country_list)
 	end
 
 	def self.get_language_specific_countries(language)
 		country_list = call_api(@@lang, language)
-		country_object_array = self.make_country_objects_array(country_list)
-		country_object_array
+	  self.make_country_objects_array(country_list) 
 	end
 
 	def self.get_currency_specific_countries(currency)
 		country_list = call_api(@@currency, currency)
-		country_object_array = self.make_country_objects_array(country_list)
-		country_object_array
+	  self.make_country_objects_array(country_list)
+	end
+
+
+	def self.each_country_information(country_code)
+		
 	end
  
 end

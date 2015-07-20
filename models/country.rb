@@ -1,9 +1,10 @@
 class Country 
   @@provide_link = '/countries/'
   
-  attr_accessor :countryName, :population, :lat, :lng, :area, :timezone, :countryCode
+  attr_accessor :countryName, :population, :lat, :lng, :area, :timezone, :countryCode, :continentCode
 
   def initialize(country_hash={})
+    @timezone = {}
     update_attributes(country_hash)
   end
   

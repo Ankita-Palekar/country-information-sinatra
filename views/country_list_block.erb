@@ -7,7 +7,8 @@ Result list for
 </h6>
 <ul class="nav nav-tabs nav-stacked country-list">		
 	<% @result_list.each_with_index do |country, index| %>
- 		<li data-name=<%="#{country.countryName}"%>  data-population=<%= "#{country.population}"%> data-country-code = <%= "#{country.countryCode}"%> data-lat = <%= "#{country.lat}"%>  data-lng = <%= "#{country.lng}"%>%>
+	<% timezone = country.timezone.has_key?('timeZoneId') ? country.timezone['timeZoneId'] : "" %>
+ 		<li data-name='<%="#{country.countryName}"%>'  data-population='<%="#{country.population}"%>' data-country-code ='<%="#{country.countryCode}"%>' data-lat = '<%="#{country.lat}"%>' data-region = '<%= timezone %>'  data-lng ='<%="#{country.lng}"%>' data-continent-code = '<%= "#{country.continentCode}"%>'>
 	 		<a href="#">	
 				<%= "#{country.countryName}" %>
 	 		</a>
