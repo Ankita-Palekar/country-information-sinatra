@@ -10,42 +10,41 @@ class ApplicationController < Sinatra::Base
 		erb :index
 	end
 
-	# get '/test'  do
-	# 	region = Region.new
-	# 	regions = region.get_all_regions()
-	# 	puts regions.inspect
-	# end
-
-	get '/countries' do
-		puts params.inspect
-		country = Country.new
-		
-		@result_list = country.get_information(:action => Country.provide_region_link, :action_code => params["region_code"]) if params.has_key?("region_code") 
-		
-		@result_list = country.get_information(:action => Country.provide_currency_link, :action_code => params["currency"]) if params.has_key?("currency") 
-		
-		@result_list = country.get_information(:action => Country.provide_language_link, :action_code => params["language"]) if params.has_key?("language") 
-		
-		@specific_result = "region specific result"
-		erb :category_pannel do
+	get '/region/:region_name/countries' do
+		@result_list = Interface.get_region_specific_countries(params["region_name"])
+		erb :category_panel do
 			erb :country_list_block, :layout => false  
 		end
 	end
 
+	get '/language/:language_code/countries' do
+		@result_list = Interface.get_language_specific_countries(params["language_code"])
+		erb :category_panel do
+			erb :country_list_block, :layout => false  
+		end
+	end
+
+
+	get '/currency/:currency_code/countries' do
+		@result_list = Interface.get_currency_specific_countries(params["currency_code"])
+		erb :category_panel do
+			erb :country_list_block, :layout => false  
+		end
+	end
+
+
 	get '/regions' do
-		region = Region.new
 		@category_name = "Regions"
-		@result_list = region.get_all_regions
-		@set_pannel_name = Region.provide_link
-		erb :category_pannel do
+		@set_region_link = Interface.provide_region_link
+		@set_countries_link = Interface.provide_country_link
+		@result_list = Interface.get_all_regions
+		erb :category_panel do
 			erb :region_block, :layout => false  
 		end
 	end
 
 	post '/search' do 
-		country = Country.new
-		@result_list = country.get_information(:action => Country.provide_search_link, :action_code => params["query"])
-		@result_list
+		@result_list = Interface.search_countries(params["query"])
 		content_type 'text/html'
 		erb :country_list_block, :layout => false
 	end
